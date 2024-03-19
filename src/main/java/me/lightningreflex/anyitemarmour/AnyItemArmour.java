@@ -36,12 +36,14 @@ public final class AnyItemArmour extends JavaPlugin implements Listener {
 	@EventHandler
 	public void onInventoryClick(InventoryClickEvent event) {
 		Player player = (Player) event.getWhoClicked();
+//		instance.getLogger().info("");
 //		instance.getLogger().info("Slot Clicked!");
 //		instance.getLogger().info("Slot: " + event.getSlot());
 //		instance.getLogger().info("Slot Type: " + event.getSlotType());
 //		instance.getLogger().info("Held Item: " + event.getCursor().getType().name());
 //		instance.getLogger().info("Clicked Item: " + event.getCurrentItem().getType().name());
 //		instance.getLogger().info("Click Type: " + event.getClick().name());
+//		instance.getLogger().info("");
 
 		if (
 			event.getSlotType().equals(InventoryType.SlotType.ARMOR) &&
@@ -57,7 +59,7 @@ public final class AnyItemArmour extends JavaPlugin implements Listener {
 
 			// Check click type and run code accordingly
 			if (event.getClick().equals(ClickType.LEFT)) { // Left click
-				if (!event.getCursor().getType().equals(event.getCurrentItem().getType())) {
+				if (!event.getCursor().isSimilar(event.getCurrentItem())) {
 					// Get the item in the cursor and clone it, so we don't modify the original
 					ItemStack cursorItem = event.getCursor().clone();
 
@@ -81,27 +83,33 @@ public final class AnyItemArmour extends JavaPlugin implements Listener {
 			} else if (event.getClick().equals(ClickType.RIGHT)) { // Right click
 				if (event.getCurrentItem().getType().equals(Material.AIR)) { // If the armor slot is empty
 					// Add 1 of the item in the cursor to the armor slot
-					event.setCurrentItem(new ItemStack(event.getCursor().getType(), 1));
+					ItemStack cursorItem = event.getCursor().clone();
+					cursorItem.setAmount(1);
+					event.setCurrentItem(cursorItem);
 					// Remove 1 of the item in the cursor
 					event.getCursor().setAmount(event.getCursor().getAmount() - 1);
 
 				} else { // If the armor slot is not empty
 					// Check if the item in the cursor is the same as the item in the armor slot
-					if (event.getCursor().getType().equals(event.getCurrentItem().getType())) {
+					if (event.getCursor().isSimilar(event.getCurrentItem())) {
 						if (event.getCursor().getAmount() < event.getCursor().getMaxStackSize()) { // If the cursor item is not full
 							// Add 1 of the item in the cursor to the armor slot
-							event.setCurrentItem(new ItemStack(event.getCursor().getType(), event.getCurrentItem().getAmount() + 1));
+							ItemStack cursorItem = event.getCursor().clone();
+							cursorItem.setAmount(event.getCurrentItem().getAmount() + 1);
+							event.setCurrentItem(cursorItem);
 							// Remove 1 of the item in the cursor
 							event.getCursor().setAmount(event.getCursor().getAmount() - 1);
 						}
 
 					} else if (event.getCursor().getType().equals(Material.AIR)) {
 						// Take out half of the items in the armor slot
-						event.setCursor(new ItemStack(event.getCurrentItem().getType(), (int) Math.round(event.getCurrentItem().getAmount() / 2.0)));
+						ItemStack currentItem = event.getCurrentItem().clone();
+						currentItem.setAmount((int) Math.round(currentItem.getAmount() / 2.0));
+						event.setCursor(currentItem);
 						// Remove half of the items in the armor slot
 						event.getCurrentItem().setAmount((int) Math.floor(event.getCurrentItem().getAmount() / 2.0));
 
-					} else if (!event.getCursor().getType().equals(event.getCurrentItem().getType())) { // If the item in the cursor is not the same as the item in the armor slot
+					} else if (!event.getCursor().isSimilar(event.getCurrentItem())) { // If the item in the cursor is not the same as the item in the armor slot
 						// Get the item in the cursor and clone it, so we don't modify the original
 						ItemStack cursorItem = event.getCursor().clone();
 
