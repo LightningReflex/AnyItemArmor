@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>me.lightningreflex</groupId>
-    <artifactId>AnyItemArmour</artifactId>
+    <artifactId>AnyItemArmor</artifactId>
     <version>1.1</version>
     <packaging>jar</packaging>
 
-    <name>AnyItemArmour</name>
+    <name>AnyItemArmor</name>
 
     <description>Minecraft plugin to equip any item as an armor piece.</description>
     <properties>

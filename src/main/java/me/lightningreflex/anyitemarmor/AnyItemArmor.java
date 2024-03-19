@@ -1,4 +1,4 @@
-package me.lightningreflex.anyitemarmour;
+package me.lightningreflex.anyitemarmor;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -13,9 +13,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public final class AnyItemArmour extends JavaPlugin implements Listener {
+public final class AnyItemArmor extends JavaPlugin implements Listener {
 
-	private AnyItemArmour instance;
+	private AnyItemArmor instance;
 
 	@Override
 	public void onEnable() {

@@ -1,6 +1,6 @@
-name: AnyItemArmour
+name: AnyItemArmor
 version: '${project.version}'
-main: me.lightningreflex.anyitemarmour.AnyItemArmour
+main: me.lightningreflex.anyitemarmor.AnyItemArmor
 authors: [ LightningReflex ]
 description: A Minecraft plugin to equip any item as an armor piece.
 api-version: 1.20
