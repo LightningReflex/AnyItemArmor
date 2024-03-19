@@ -19,6 +19,10 @@ public final class AnyItemArmour extends JavaPlugin implements Listener {
 
 	@Override
 	public void onEnable() {
+		// Metrics
+		int pluginId = 21366; // <-- Replace with the id of your plugin!
+		Metrics metrics = new Metrics(this, pluginId);
+
 		// Plugin startup logic
 		instance = this;
 		Bukkit.getPluginManager().registerEvents(this, this);
