@@ -2,5 +2,4 @@ name: AnyItemArmour
 version: '${project.version}'
 main: me.lightningreflex.anyitemarmour.AnyItemArmour
 authors: [ LightningReflex ]
-description: Minecraft plugin to equip any item as an armor piece.
-website: https://discord.gg/C6RQMtXXcV
+description: A Minecraft plugin to equip any item as an armor piece.
